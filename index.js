@@ -10,13 +10,13 @@ module.exports = function(opts) {
 
     var args, run;
     if (process.platform !== 'win32') {
-      args = [compil, '/SZ:' + signToolPath, 'Z:' + script_path];
+      args = [compil, '/S"signtool=Z:' + signToolPath + ' $p"', 'Z:' + script_path];
       if (opts && opts.args){
         args = args.concat(opts.args);
       }
       run = spawn('wine', args);
     } else {
-      args = ['/S' + signToolPath, script_path];
+      args = ['/S"signtool=' + signToolPath + ' $p"', script_path];
       if (opts && opts.args){
         args = args.concat(opts.args);
       }
